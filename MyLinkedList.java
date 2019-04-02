@@ -1,4 +1,58 @@
-class MyLinkedList{
+class MyLinkedList<E>{
+  class Node{
+    // stores numbers
+   private E data;
+   // can connects to other nodes
+   private Node next,prev;
+
+   //node constructor with 3 elements
+   public Node(Node a,E b,Node c) {
+     prev = a;
+     data = b;
+     next = c;
+   }
+   //node contrusctor with a beginning
+   public Node(E b,Node c) {
+     data = b;
+     next = c;
+   }
+   public Node(E b) {
+     data = b;
+   }
+   //node constructor with an end
+   public Node(Node a,E b) {
+     prev = a;
+     data = b;
+   }
+   // returns data
+   public E getData() {
+     return data;
+   }
+   // sets next as something else
+   public void setNext(Node other) {
+     next = other;
+   }
+   // sets previous as something
+   public void setPrev(Node other) {
+     prev = other;
+   }
+   // sets data as a different value
+   public void setData(E i) {
+     data = i;
+   }
+   // returns the next node
+   public Node next() {
+     return next;
+   }
+   //returns the previous node
+   public Node prev() {
+     return prev;
+   }
+   //returns the data in string form
+   public String toString() {
+     return "" + data;
+   }
+  }
  private int length;
  private Node start,end;
  public MyLinkedList() {
@@ -16,7 +70,7 @@ public void clear() {
  }
  // 2 cases 1. if there is an empty MyLinkedList 2 if there isnt
  // if there is
- public boolean add(int value) {
+ public boolean add(E value) {
    if (length == 0) {
      Node input = new Node(value);
      end = input;
@@ -46,21 +100,21 @@ private Node getNode(int index) {
 }
 
 // reused code
-public Integer get(int index) {
+public E get(int index) {
   return getNode(index).getData();
 }
 
-public Integer set(int index,Integer value) {
+public E set(int index,E value) {
   if (index >= length) {
     throw new IndexOutOfBoundsException("index is out of range (index < 0 || index >= size())");
   }
-  int output = get(index);
+  E output = get(index);
   getNode(index).setData(value);
   return output;
 }
 
 // rused code;
-  public boolean contains(Integer value) {
+  public boolean contains(E value) {
   /*  Node current = start;
     for (int i = 0; i < length; i += 1) {
       if (current.getData() == value) {
@@ -74,7 +128,7 @@ public Integer set(int index,Integer value) {
   }
 
 // loops until it finds the right number
-  public int indexOf(Integer value) {
+  public int indexOf(E value) {
     Node current = start;
       for (int i = 0; i < length; i += 1) {
         if (current.getData() == value) {
@@ -87,7 +141,7 @@ public Integer set(int index,Integer value) {
 
 
 // a lot of different get and sets;
-  public void add(int index,Integer a) {
+  public void add(int index,E a) {
     // if there isnt any elements or it is the last one, just use add;
     if (index == length) {
       add(a);
@@ -110,7 +164,7 @@ public Integer set(int index,Integer value) {
   }
 
 // removes is more redirects. maybe shouldve used more variables
-public Integer remove(int index) {
+public E remove(int index) {
   Node indexNode = getNode(index);
   if (index == 0) {
     // needs to redirect start if it is the first element
@@ -147,7 +201,7 @@ public Integer remove(int index) {
  }
 
 // combine of indexOf and remove; literally copied and pasted parts of both code;
- public boolean remove(Integer value) {
+ public boolean remove(E value) {
    Node indexNode = start;
      for (int index = 0; index < length; index += 1) {
        if (indexNode.getData() == value) {
@@ -172,7 +226,7 @@ public Integer remove(int index) {
 
 //   Connecting two linked lists should be able to happen in constant time!
 //New Method:
-   public void extend(MyLinkedList other){
+   public void extend(MyLinkedList<E> other){
      if (length == 0) {
        start = other.start;
      } else {
