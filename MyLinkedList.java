@@ -163,6 +163,24 @@ public E set(int index,E value) {
   }
   }
 
+  public E removeLast() {
+    if (length == 0) {
+      System.out.println("empty");
+    }
+    E data = end.getData();
+    Node newend = end.prev;
+    newend.next = null;
+    end = newend;
+    length -= 1;
+    return data;
+  }
+  public void merge() {
+
+
+
+
+  }
+
 // removes is more redirects. maybe shouldve used more variables
 public E remove(int index) {
   Node indexNode = getNode(index);
@@ -227,6 +245,9 @@ public E remove(int index) {
 //   Connecting two linked lists should be able to happen in constant time!
 //New Method:
    public void extend(MyLinkedList<E> other){
+     if (other.length == 0) {
+       return;
+     }
      if (length == 0) {
        start = other.start;
      } else {
