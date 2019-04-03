@@ -1,9 +1,9 @@
 class MyLinkedList<E>{
   class Node{
     // stores numbers
-   private E data;
+   public E data;
    // can connects to other nodes
-   private Node next,prev;
+   public Node next,prev;
 
    //node constructor with 3 elements
    public Node(Node a,E b,Node c) {
@@ -164,14 +164,15 @@ public E set(int index,E value) {
   }
 
   public E removeLast() {
-    if (length == 0) {
-      System.out.println("empty");
-    }
     E data = end.getData();
+    if (length == 1) {
+      clear();
+    }
+    else {
     Node newend = end.prev;
-    newend.next = null;
     end = newend;
     length -= 1;
+  }
     return data;
   }
   public void merge() {
